@@ -117,7 +117,7 @@ func minAvailableCheck(lintCtx lintcontext.LintContext, object lintcontext.Objec
 		//nolint:gosec // Integer conversion should be safe here since the kube api uses int32.
 		if replicas <= int32(pdbMinAvailable) {
 			results = append(results, diagnostic.Diagnostic{
-				Message: fmt.Sprintf("The current number of replicas for deployment %s is equal to or lower than the minimum number of replicas specified by its PDB.", dl.GetName()),
+				Message: fmt.Sprintf("The current number of replicas (%d) for deployment %s is equal to or lower than the minimum number of replicas specified by its PDB (%d).", replicas, dl.GetName(), pdbMinAvailable),
 			})
 		}
 	}
